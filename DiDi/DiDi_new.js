@@ -868,7 +868,7 @@ async function steps() {
 
 function stepInfo() {
 	return $.post({
-		url: stepURL + "/step/info",
+		url: stepURL + "/step/info?wsgsig=dd03-20TSbFA1dgkbbelyFkVJLBBMGndeg95vG9q23%2F1JGnddbdOjdkILNBa4g0kdbVrZA%2FUAMa66gWZgE%2FTVEdhM4hM5fnYe9VSQ9dhL%2BddMfsPC9lYRahleLaIDfnO",
 		headers: {
 			"Content-Type": "application/json",
 			ticket: $.Ticket,
@@ -897,7 +897,7 @@ function stepInfo() {
 
 function stepBonus() {
 	return $.post({
-		url: stepURL + "/step/getBonus",
+		url: stepURL + "/step/getBonus?wsgsig=dd03-dN6Ybbf9aghnUdVzHxe7Lf4FDna%2FraLuK29M3XNCDnahUeYi2xZ1Nf0cb0hhUUhYMZddMG%2BKcmwiihxU5TLM4Wi0GXhnhaTuJ1dK4G8JGbPPhdlrHxHJ3WbF0gO",
 		headers: {
 			"Content-Type": "application/json",
 			ticket: $.Ticket,
