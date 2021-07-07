@@ -926,7 +926,7 @@ function stepBonus() {
 
 function stepSign() {
 	return $.post({
-		url: stepURL + "/step/sign",
+		url: stepURL + "/step/sign?wsgsig=dd03-MoFiOq3bgZ2AUVNea6eJkUz0F2Z0rqX9bZH0qeCAF2ZGUUc1A6rbkUKadP2GUe3bd2L7nkDIeYdFiAfN96IclBcaAZMA%2F%2FNcF11AlENFBP6AUlgGET9EmUJDfZH",
 		headers: {
 			"Content-Type": "application/json",
 			ticket: $.Ticket,
