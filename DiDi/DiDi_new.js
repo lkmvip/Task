@@ -310,11 +310,7 @@ function checkin2() {
 						}
 					}
 				} else {
-					$.error(resp.body);
-					throw new ERR.BodyError(
-						"重复签到。\n" +
-							JSON.stringify(resp.body)
-					);
+					throw new ERR.TokenError("签到失败‼️ 重复签到。");
 				}
 			}
 		})
