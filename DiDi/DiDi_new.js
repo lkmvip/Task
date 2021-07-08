@@ -271,7 +271,7 @@ function getIds() {
 			throw err;
 		});
 }
-
+/*
 function checkin2() {
 	return $.post({
 		url: mainURL + "/wechat/equinox/volcano/equinox_signin/api/sign",
@@ -317,7 +317,7 @@ function checkin2() {
 		.catch((err) => {
 			throw err;
 		});
-}
+}*/
 
 function checkin() {
 	return $.get({
