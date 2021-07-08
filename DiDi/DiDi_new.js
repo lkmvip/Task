@@ -162,6 +162,7 @@ if ($.isRequest) {
 					let s_i = await Choose($.source_id);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
+				await checkin2();
 				await checkin();
 				await storeActId();
 				await reward();
@@ -265,6 +266,57 @@ function getIds() {
 			//$.activity_instance_id = [];
 			//$.activity_instance_id.push(obj.activity_instance_id1);
 			//$.activity_instance_id.push(obj.activity_instance_id2);
+		})
+		.catch((err) => {
+			throw err;
+		});
+}
+
+function checkin2() {
+	return $.post({
+		url: mainURL + "/wechat/equinox/volcano/equinox_signin/api/sign",
+		headers: {
+			"Content-Type": "application/json",
+			//ticket: $.Ticket,
+		},
+		body: '{"app_id":"common","token":$.Ticket,"city_id":"' + $.city + '"}';
+	})
+	
+		.delay(500)
+		.then((resp) => {
+			if (resp.statusCode == 403) {
+				throw new ERR.TokenError("Token 失效");
+			} else {
+				$.log("benefit: " + JSON.stringify(resp.body));
+				let obj = isJSON(resp.body);
+				if (obj && obj.data != null) {
+						$.subTitle += "福利金🆗";
+						let todayearn = Number(
+							obj.data.subsidy_state.subsidy_amount +
+								obj.data.subsidy_state.extra_subsidy_amount
+						);
+						let dd_coin = Number(
+							obj.data.subsidy_state.dd_coin +
+								obj.data.subsidy_state.extra_dd_coin
+						);
+						let dd_coin = Number(
+							obj.data.subsidy_state.dd_coin +
+								obj.data.subsidy_state.extra_dd_coin
+						);
+						$.detail += "签到获得 " + todayearn + " 福利金，dd_coin " + dd_coin + " 个，cash " + obj.data.subsidy_state.cash + " 个，wj_gold " + obj.data.subsidy_state.wj_gold_amount + " 个，";
+					if (obj.data.notification) {
+						for (let message of obj.data.notification.reverse()) {
+							$.expire += "\n" + message;
+						}
+					}
+				} else {
+					$.error(resp.body);
+					throw new ERR.BodyError(
+						"重复签到。\n" +
+							JSON.stringify(resp.body)
+					);
+				}
+			}
 		})
 		.catch((err) => {
 			throw err;
