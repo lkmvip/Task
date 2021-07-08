@@ -162,7 +162,7 @@ if ($.isRequest) {
 					let s_i = await Choose($.source_id);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
-				//await checkin2();
+				await checkin2();
 				await checkin();
 				await storeActId();
 				await reward();
@@ -271,7 +271,7 @@ function getIds() {
 			throw err;
 		});
 }
-/*
+
 function checkin2() {
 	return $.post({
 		url: mainURL + "/wechat/equinox/volcano/equinox_signin/api/sign",
@@ -299,10 +299,6 @@ function checkin2() {
 							obj.data.subsidy_state.dd_coin +
 								obj.data.subsidy_state.extra_dd_coin
 						);
-						let dd_coin = Number(
-							obj.data.subsidy_state.dd_coin +
-								obj.data.subsidy_state.extra_dd_coin
-						);
 						$.detail += "签到获得 " + todayearn + " 福利金，dd_coin " + dd_coin + " 个，cash " + obj.data.subsidy_state.cash + " 个，wj_gold " + obj.data.subsidy_state.wj_gold_amount + " 个，";
 					if (obj.data.notification) {
 						for (let message of obj.data.notification.reverse()) {
@@ -310,14 +306,14 @@ function checkin2() {
 						}
 					}
 				} else {
-					throw new ERR.TokenError("签到失败‼️ 重复签到。");
+					$.info("重复签到");
 				}
 			}
 		})
 		.catch((err) => {
 			throw err;
 		});
-}*/
+}
 
 function checkin() {
 	return $.get({
