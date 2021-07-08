@@ -279,7 +279,7 @@ function checkin2() {
 			"Content-Type": "application/json",
 			//ticket: $.Ticket,
 		},
-		body: '{"app_id":"common","token":"' + $.Ticket + '","city_id":"' + $.city + '"}',
+		body: '{"app_id":"common","token":"' + $.Ticket + '","city_id":' + $.city + '}',
 	})
 	
 		.delay(500)
@@ -306,7 +306,7 @@ function checkin2() {
 						}
 					}
 				} else {
-					$.info("签到出错 : \n" + obj.errMsg);
+					$.info("签到出错 : \n" + obj.errMsg + "\n");
 				}
 			}
 		})
