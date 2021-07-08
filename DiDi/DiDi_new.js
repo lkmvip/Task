@@ -162,7 +162,7 @@ if ($.isRequest) {
 					let s_i = await Choose($.source_id);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
-				await checkin2();
+				//await checkin2();
 				await checkin();
 				await storeActId();
 				await reward();
