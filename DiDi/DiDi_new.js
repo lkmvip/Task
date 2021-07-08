@@ -306,7 +306,7 @@ function checkin2() {
 						}
 					}
 				} else {
-					$.info("重复签到");
+					$.info("签到出错 : \n" + obj.errMsg);
 				}
 			}
 		})
