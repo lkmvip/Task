@@ -299,14 +299,9 @@ function checkin2() {
 							obj.data.subsidy_state.dd_coin +
 								obj.data.subsidy_state.extra_dd_coin
 						);
-						$.detail += "签到获得福利金 " + todayearn + " 个 ，dd_coin " + dd_coin + " 个，cash " + obj.data.subsidy_state.cash + " 个，wj_gold " + obj.data.subsidy_state.wj_gold_amount + " 个，";
-					if (obj.data.notification) {
-						for (let message of obj.data.notification.reverse()) {
-							$.expire += "\n" + message;
-						}
-					}
+						$.detail += "\n签到获得福利金 " + todayearn + " 个 ，dd_coin " + dd_coin + " 个，cash " + obj.data.subsidy_state.cash + " 个，wj_gold " + obj.data.subsidy_state.wj_gold_amount + " 个。\n\n";
 				} else {
-					$.info("签到出错 : \n" + obj.errMsg + "\n");
+					$.detail += "\n签到出错: " + obj.errMsg +"\n\n";
 				}
 			}
 		})
