@@ -277,7 +277,7 @@ function getIds() {
 
 function checkin4() {
 	return $.post({
-		url: gameURL + "/wechat/equinox/volcano/equinox_signin/api/sign",
+		url: gameURL + "/api/game/plant/sign",
 		headers: {
 			"Content-Type": "application/json",
 			//ticket: $.Ticket,
