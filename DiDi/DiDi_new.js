@@ -75,6 +75,7 @@ $.tail = "";
 $.expire = "";
 $.times = {};
 const mainURL = "https://bosp-api.xiaojukeji.com";
+const gameURL = "https://game.xiaojukeji.com";
 const awardURL = "https://api.udache.com/gulfstream/passenger/v2/other";
 const financeURL =
 	"https://manhattan.webapp.xiaojukeji.com/marvel/api/manhattan-signin-task/signIn";
@@ -162,6 +163,8 @@ if ($.isRequest) {
 					let s_i = await Choose($.source_id);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
+				await checkin4();
+				await checkin3();
 				await checkin2();
 				await checkin();
 				await storeActId();
@@ -266,6 +269,67 @@ function getIds() {
 			//$.activity_instance_id = [];
 			//$.activity_instance_id.push(obj.activity_instance_id1);
 			//$.activity_instance_id.push(obj.activity_instance_id2);
+		})
+		.catch((err) => {
+			throw err;
+		});
+}
+
+function checkin4() {
+	return $.post({
+		url: gameURL + "/wechat/equinox/volcano/equinox_signin/api/sign",
+		headers: {
+			"Content-Type": "application/json",
+			//ticket: $.Ticket,
+		},
+		body: '{"platform":1,"token":"' + $.Ticket + '"}',
+	})
+	
+		.delay(500)
+		.then((resp) => {
+			if (resp.statusCode == 403) {
+				throw new ERR.TokenError("Token 失效");
+			} else {
+				$.log("benefit: " + JSON.stringify(resp.body));
+				let obj = isJSON(resp.body);
+				if (obj && obj.errno == 0) {
+						$.subTitle += "种水果";
+						$.detail += "\n签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards.name + " 。\n\n";
+				} else {
+					$.detail += "\n签到出错: " + obj.errmsg +"\n\n";
+				}
+			}
+		})
+		.catch((err) => {
+			throw err;
+		});
+}
+
+
+function checkin3() {
+	return $.post({
+		url: gameURL + "/api/game/quiz/sign?wsgsig=dd03-QqASa6xtEgfM5hlxmtdeL2OmfnmJ2k5XlnM22OVhfnmK5%2FOpXcULM2Sq00fK5BrVjgIANIksFG4HJdTZtfH%2BM5Pkcs3%2B6E%2FnnD%2FeLPqsbbG%2BIdhVkt1L2wOWGiL",
+		headers: {
+			"Content-Type": "application/json",
+			//ticket: $.Ticket,
+		},
+		body: '{"token":"' + $.Ticket + '"}',
+	})
+	
+		.delay(500)
+		.then((resp) => {
+			if (resp.statusCode == 403) {
+				throw new ERR.TokenError("Token 失效");
+			} else {
+				$.log("benefit: " + JSON.stringify(resp.body));
+				let obj = isJSON(resp.body);
+				if (obj && obj.errno == 0) {
+						$.subTitle += "头脑达人";
+						$.detail += "\n签到成功。\n\n";
+				} else {
+					$.detail += "\n签到出错: " + obj.errmsg +"\n\n";
+				}
+			}
 		})
 		.catch((err) => {
 			throw err;
