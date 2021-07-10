@@ -132,11 +132,11 @@ if ($.isRequest) {
 					await instance();
 				}
 				*/
-			/*} else if ($.now >= EIGHT_O_CLOCK_PM + 60 * 1000) {
+			} else if ($.now >= EIGHT_O_CLOCK_PM + 60 * 1000) {
 				if (aff) await getIds();
 				await steps();
 				await $.info("滴滴走路\n" + $.subTitle + "\n" + $.detail);
-				await $.notify("滴滴走路 ♿️", $.subTitle, $.detail);*/
+				await $.notify("滴滴走路 ♿️", $.subTitle, $.detail);
 			} else {
 				/* 
 			else if ($.now >= NINE_O_CLOCK_AM - 2 * 1000 && $.now <= NINE_O_CLOCK_AM + 60 * 1000) {
@@ -293,10 +293,9 @@ function checkin4() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.errno == 0) {
-						$.subTitle += "种水果";
-						$.detail += "\n签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards.name + " 。\n\n";
+						$.detail += "\n种水果签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards.name + " 。\n\n";
 				} else {
-					$.detail += "\n签到出错: " + obj.errmsg +"\n\n";
+					$.detail += "\n种水果签到出错: " + obj.errmsg +"\n\n";
 				}
 			}
 		})
@@ -324,10 +323,9 @@ function checkin3() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.errno == 0) {
-						$.subTitle += "头脑达人";
-						$.detail += "\n签到成功。\n\n";
+						$.detail += "\n头脑达人签到成功。\n\n";
 				} else {
-					$.detail += "\n签到出错: " + obj.errmsg +"\n\n";
+					$.detail += "\n头脑达人签到出错: " + obj.errmsg +"\n\n";
 				}
 			}
 		})
@@ -354,7 +352,6 @@ function checkin2() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.data != null) {
-						$.subTitle += "福利金🆗";
 						let todayearn = Number(
 							obj.data.subsidy_state.subsidy_amount +
 								obj.data.subsidy_state.extra_subsidy_amount
