@@ -293,7 +293,7 @@ function checkin4() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.errno == 0) {
-						$.detail += "\n种水果签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards.name + " 。\n\n";
+						$.detail += "\n种水果签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards[0].name + " 。\n\n";
 				} else {
 					$.detail += "\n种水果签到出错: " + obj.errmsg +"\n\n";
 				}
