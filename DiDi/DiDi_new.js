@@ -293,9 +293,9 @@ function checkin4() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.errno == 0) {
-						$.detail += "\n种水果签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards[0].name + " 。\n\n";
+						$.detail += "\n种水果签到第 " + obj.data.sign_times + " 次 ，获得 " + obj.data.rewards[0].name + " 。\n";
 				} else {
-					$.detail += "\n种水果签到出错: " + obj.errmsg +"\n\n";
+					$.detail += "\n种水果签到出错: " + obj.errmsg +"\n";
 				}
 			}
 		})
@@ -323,9 +323,9 @@ function checkin3() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.errno == 0) {
-						$.detail += "\n头脑达人签到成功。\n\n";
+						$.detail += "\n头脑达人签到成功。\n";
 				} else {
-					$.detail += "\n头脑达人签到出错: " + obj.errmsg +"\n\n";
+					$.detail += "\n头脑达人签到出错: " + obj.errmsg +"\n";
 				}
 			}
 		})
@@ -386,7 +386,7 @@ function checkin() {
 				$.log("benefit: " + JSON.stringify(resp.body));
 				let obj = isJSON(resp.body);
 				if (obj && obj.errno == 0) {
-					if (obj.data.sign.sign) {
+					/*if (obj.data.sign.sign) {
 						$.subTitle += "福利金🆗";
 						let todayearn = Number(
 							obj.data.sign.sign.subsidy_state.subsidy_amount +
@@ -395,7 +395,8 @@ function checkin() {
 						$.detail += "签到获得 " + todayearn + " 福利金，";
 					} else {
 						$.subTitle += "福利金🔄";
-					}
+					}*/
+					$.subTitle += "福利金🔄";
 					let total = Number(obj.data.welfare.carousel_text[0].slice(4));
 					$.detail += "账户共有 " + total + " 福利金，可抵扣 " + total / 100 + " 元。";
 					//if (obj.data.message && obj.data.message.text) $.info(obj.data.message.text);
