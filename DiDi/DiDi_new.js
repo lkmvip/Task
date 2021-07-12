@@ -164,7 +164,7 @@ if ($.isRequest) {
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
 				await checkin4();
-				await checkin3();
+				//await checkin3();
 				await checkin2();
 				await checkin();
 				await storeActId();
